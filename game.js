@@ -74,6 +74,8 @@ function playSound(color) {
 function playGame(round) { // round == elements in sequence
     let keysPlayed = 0;
 
+    $(document).off("keydown");
+
     generateSequence(1);
     playSequence(sequence);
 
@@ -89,6 +91,13 @@ function playGame(round) { // round == elements in sequence
             playSound("error");
 
             $(".btn").off("click");
+
+            $(document).on("keydown", function(event) {
+                if (event.key == "a") {
+                playGame(round);
+                }
+            });
+
             sequence.length = 0;
             round = 1;
 
